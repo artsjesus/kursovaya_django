@@ -39,13 +39,12 @@ class Mailing(models.Model):
         ("weekly", "Еженедельно"),
         ("monthly", "Ежемесячно"),
     ]
-
+    description = models.TextField(verbose_name="Описание рассылки", **NULLABLE)
     start_time = models.DateTimeField("Время начала рассылки")
     periodicity = models.CharField(max_length=10, choices=PERIODICITY_CHOICES, verbose_name="Периодичность")
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, verbose_name="Статус")
     message = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name="Сообщение")
     client = models.ManyToManyField(Client, verbose_name="Клиенты")
-    last_attempt = models.DateTimeField(verbose_name="Дата последней попытки", **NULLABLE)
     actual_end_time = models.DateTimeField(verbose_name="Дата окончания рассылки", **NULLABLE)
 
     def __str__(self):
@@ -64,7 +63,7 @@ class MailingAttempt(models.Model):
     server_response = models.TextField(verbose_name="Ответ сервера", **NULLABLE)
 
     def __str__(self):
-        return f"Попытка {self.id} для рассылки {self.miling.id}"
+        return f"Попытка {self.id} для рассылки {self.mailing.id}"
 
     class Meta:
         verbose_name = "Попытка рассылки"
