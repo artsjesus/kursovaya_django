@@ -12,3 +12,9 @@ class MailingForm(forms.ModelForm):
     class Meta:
         model = Mailing
         fields = ['description', 'periodicity', 'status', 'message', 'client']
+
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ["subject", "body"]
