@@ -1,4 +1,3 @@
-<!-- templates/client_detail.html -->
 {% extends 'main/base.html' %}
 {% block content %}
     <div class="album py-5 bg-body-tertiary">
@@ -7,16 +6,16 @@
                 <div class="col-md-6">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <p class="card-text"><strong>Тема сообщения: {{ object.subject }} </strong></p>
-                            <p class="card-text">Текст сообщения: {{ object.body }}</p>
+                            <p class="card-text"><strong>Заголовок: {{ blog.title }} ({{ blog.slug }})</strong></p>
+                            <p class="card-text">Описание блога: {{ blog.body }}</p>
+                            <p class="card-text">Количество просмотров: {{ blog.views_count }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a class="btn btn-primary" href="{% url 'mailing:message_list' %}"
+                                    <a class="btn btn-primary" href="{% url 'blog:blog_list' %}"
                                        role="button">Назад</a>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
